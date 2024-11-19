@@ -22,6 +22,10 @@ a:hover {
   color: #0056b3;
 }
 
+img {
+  display: block;
+  max-height: 100%;
+}
 /* Resume Builder Page Styles */
 .container {
   max-width: 900px;
@@ -109,4 +113,13 @@ button {
   cursor: pointer;
 }
 
+footer {
+  width: 100%;
+  position: relative; /* Or fixed for sticky */
+  bottom: 0;
+  background-color: #1976d2; /* Match your theme */
+  color: white;
+  text-align: center;
+  padding: 10px 0; /* Add some padding for height */
+}
 

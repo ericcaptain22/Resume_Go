@@ -11,7 +11,7 @@ import {
   Alert,
 } from '@mui/material';
 
-const Login = () => {
+const Login = ({ userType }) => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
@@ -26,8 +26,13 @@ const Login = () => {
     try {
       const response = await axios.post('http://localhost:8080/login', formData);
       localStorage.setItem('token', response.data.token);
-      alert('Login successful!');
+      if (formData.email && formData.password) {
+      alert(`${userType} Login successful!`);
       navigate('/resume-builder');
+      }
+      else {
+        throw new Error('Invalid Credentials')
+      }
     } catch (error) {
       setErrorMessage('Invalid credentials. Please try again.');
     }
@@ -60,7 +65,7 @@ const Login = () => {
             gutterBottom
             sx={{ color: '#1976d2' }}
           >
-            Login
+           { userType } Login
           </Typography>
 
           {errorMessage && (
@@ -117,4 +122,6 @@ const Login = () => {
   );
 };
 
+export const UserLogin = () => <Login userType="User" />;
+export const RecruiterLogin = () => <Login userType="Recruiter" />;
 export default Login;

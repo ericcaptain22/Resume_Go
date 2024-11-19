@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { TextField, Button, Container, Box, Typography, Alert, Paper } from '@mui/material';
 
-const Register = () => {
+const Register = ({ userType }) => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [alert, setAlert] = useState({ type: '', message: '' });
 
@@ -14,7 +14,7 @@ const Register = () => {
     e.preventDefault();
     try {
       await axios.post('http://localhost:8080/register', formData);
-      setAlert({ type: 'success', message: 'Registration successful! Please login.' });
+      setAlert({ type: 'success', message: ` ${userType} Registration successful! Please login.` });
     } catch (error) {
       setAlert({ type: 'error', message: 'Error registering user. Please try again.' });
     }
@@ -45,7 +45,7 @@ const Register = () => {
             gutterBottom
             sx={{ color: '#1976d2' }}
           >
-            Register
+            { userType } Register
           </Typography>
           {alert.message && (
             <Alert severity={alert.type} sx={{ mb: 2 }}>
@@ -95,5 +95,6 @@ const Register = () => {
     </Box>
   );
 };
-
+export const UserRegister = () => <Register userType="User" />;
+export const RecruiterRegister = () => <Register userType="Recruiter" />;
 export default Register;
