@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
-import '../index.css';
+import {
+  Box,
+  Button,
+  TextField,
+  Typography,
+  Grid,
+  Card,
+  CardContent,
+  CardActions,
+  Paper,
+} from '@mui/material';
 
 const ResumeBuilder = () => {
   const [formData, setFormData] = useState({
@@ -24,101 +34,142 @@ const ResumeBuilder = () => {
   };
 
   return (
-    <div className="container">
-      <h1>Resume Builder</h1>
+    <Box sx={{ p: 3 }}>
+      <Typography variant="h3" align="center" gutterBottom>
+        Resume Builder
+      </Typography>
       {preview ? (
-        <div>
-          <h2>Preview</h2>
-          <p><strong>Name:</strong> {formData.name}</p>
-          <p><strong>Email:</strong> {formData.email}</p>
-          <p><strong>Phone:</strong> {formData.phone}</p>
-          <p><strong>Address:</strong> {formData.address}</p>
-          <p><strong>Education:</strong> {formData.education}</p>
-          <p><strong>Experience:</strong> {formData.experience}</p>
-          <p><strong>Skills:</strong> {formData.skills}</p>
-          <button onClick={() => setPreview(false)}>Edit</button>
-        </div>
+        <Card sx={{ maxWidth: 600, mx: 'auto', p: 2 }}>
+          <CardContent>
+            <Typography variant="h4" gutterBottom>
+              Preview
+            </Typography>
+            <Typography variant="body1">
+              <strong>Name:</strong> {formData.name}
+            </Typography>
+            <Typography variant="body1">
+              <strong>Email:</strong> {formData.email}
+            </Typography>
+            <Typography variant="body1">
+              <strong>Phone:</strong> {formData.phone}
+            </Typography>
+            <Typography variant="body1">
+              <strong>Address:</strong> {formData.address}
+            </Typography>
+            <Typography variant="body1">
+              <strong>Education:</strong> {formData.education}
+            </Typography>
+            <Typography variant="body1">
+              <strong>Experience:</strong> {formData.experience}
+            </Typography>
+            <Typography variant="body1">
+              <strong>Skills:</strong> {formData.skills}
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => setPreview(false)}
+              fullWidth
+            >
+              Edit
+            </Button>
+          </CardActions>
+        </Card>
       ) : (
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <div>
-              <label htmlFor="name">Name</label>
-              <input
-                type="text"
-                id="name"
+        <Paper
+          component="form"
+          onSubmit={handleSubmit}
+          sx={{
+            maxWidth: 600,
+            mx: 'auto',
+            p: 3,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 2,
+          }}
+        >
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Name"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
                 required
               />
-            </div>
-            <div>
-              <label htmlFor="email">Email</label>
-              <input
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Email"
                 type="email"
-                id="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
                 required
               />
-            </div>
-          </div>
-          <div className="form-group">
-            <div>
-              <label htmlFor="phone">Phone</label>
-              <input
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Phone"
                 type="tel"
-                id="phone"
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
                 required
               />
-            </div>
-            <div>
-              <label htmlFor="address">Address</label>
-              <input
-                type="text"
-                id="address"
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Address"
                 name="address"
                 value={formData.address}
                 onChange={handleChange}
                 required
               />
-            </div>
-          </div>
-          <label htmlFor="education">Education</label>
-          <textarea
-            id="education"
+            </Grid>
+          </Grid>
+          <TextField
+            fullWidth
+            multiline
+            rows={4}
+            label="Education"
             name="education"
-            rows="4"
             value={formData.education}
             onChange={handleChange}
             required
-          ></textarea>
-          <label htmlFor="experience">Work Experience</label>
-          <textarea
-            id="experience"
+          />
+          <TextField
+            fullWidth
+            multiline
+            rows={4}
+            label="Work Experience"
             name="experience"
-            rows="4"
             value={formData.experience}
             onChange={handleChange}
             required
-          ></textarea>
-          <label htmlFor="skills">Skills</label>
-          <textarea
-            id="skills"
+          />
+          <TextField
+            fullWidth
+            multiline
+            rows={3}
+            label="Skills"
             name="skills"
-            rows="3"
             value={formData.skills}
             onChange={handleChange}
             required
-          ></textarea>
-          <button type="submit">Preview Resume</button>
-        </form>
+          />
+          <Button type="submit" variant="contained" color="primary" fullWidth>
+            Preview Resume
+          </Button>
+        </Paper>
       )}
-    </div>
+    </Box>
   );
 };
 

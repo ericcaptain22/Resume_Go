@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { TextField, Button, Container, Box, Typography, Alert } from '@mui/material';
 
 const Register = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
+  const [alert, setAlert] = useState({ type: '', message: '' });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -12,37 +14,50 @@ const Register = () => {
     e.preventDefault();
     try {
       await axios.post('http://localhost:8080/register', formData);
-      alert('Registration successful! Please login.');
+      setAlert({ type: 'success', message: 'Registration successful! Please login.' });
     } catch (error) {
-      alert('Error registering user');
+      setAlert({ type: 'error', message: 'Error registering user. Please try again.' });
     }
   };
 
   return (
-    <div style={{ textAlign: 'center', padding: '2rem' }}>
-      <h1>Register</h1>
+    <Container maxWidth="sm" sx={{ mt: 4, boxShadow: 3, borderRadius: 2, p: 4, backgroundColor: 'white' }}>
+      <Typography variant="h4" align="center" gutterBottom>
+        Register
+      </Typography>
+      {alert.message && (
+        <Alert severity={alert.type} sx={{ mb: 2 }}>
+          {alert.message}
+        </Alert>
+      )}
       <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-        <br />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-        <br />
-        <button type="submit">Register</button>
+        <Box display="flex" flexDirection="column" gap={2}>
+          <TextField
+            type="email"
+            name="email"
+            label="Email"
+            variant="outlined"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            fullWidth
+          />
+          <TextField
+            type="password"
+            name="password"
+            label="Password"
+            variant="outlined"
+            value={formData.password}
+            onChange={handleChange}
+            required
+            fullWidth
+          />
+          <Button type="submit" variant="contained" color="primary" fullWidth>
+            Register
+          </Button>
+        </Box>
       </form>
-    </div>
+    </Container>
   );
 };
 
