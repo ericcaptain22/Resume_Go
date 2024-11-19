@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { TextField, Button, Container, Box, Typography, Alert } from '@mui/material';
+import { TextField, Button, Container, Box, Typography, Alert, Paper } from '@mui/material';
 
 const Register = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -21,43 +21,78 @@ const Register = () => {
   };
 
   return (
-    <Container maxWidth="sm" sx={{ mt: 4, boxShadow: 3, borderRadius: 2, p: 4, backgroundColor: 'white' }}>
-      <Typography variant="h4" align="center" gutterBottom>
-        Register
-      </Typography>
-      {alert.message && (
-        <Alert severity={alert.type} sx={{ mb: 2 }}>
-          {alert.message}
-        </Alert>
-      )}
-      <form onSubmit={handleSubmit}>
-        <Box display="flex" flexDirection="column" gap={2}>
-          <TextField
-            type="email"
-            name="email"
-            label="Email"
-            variant="outlined"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            fullWidth
-          />
-          <TextField
-            type="password"
-            name="password"
-            label="Password"
-            variant="outlined"
-            value={formData.password}
-            onChange={handleChange}
-            required
-            fullWidth
-          />
-          <Button type="submit" variant="contained" color="primary" fullWidth>
+    <Box
+      className="background-animation"
+      sx={{
+        minHeight: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <Container maxWidth="sm">
+        <Paper
+          elevation={5}
+          sx={{
+            padding: '2rem',
+            borderRadius: '12px',
+            backdropFilter: 'blur(10px)',
+          }}
+        >
+          <Typography
+            variant="h4"
+            align="center"
+            gutterBottom
+            sx={{ color: '#1976d2' }}
+          >
             Register
-          </Button>
-        </Box>
-      </form>
-    </Container>
+          </Typography>
+          {alert.message && (
+            <Alert severity={alert.type} sx={{ mb: 2 }}>
+              {alert.message}
+            </Alert>
+          )}
+          <form onSubmit={handleSubmit}>
+            <Box display="flex" flexDirection="column" gap={2}>
+              <TextField
+                type="email"
+                name="email"
+                label="Email"
+                variant="outlined"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                fullWidth
+              />
+              <TextField
+                type="password"
+                name="password"
+                label="Password"
+                variant="outlined"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                fullWidth
+              />
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                fullWidth
+                sx={{
+                  padding: '0.75rem',
+                  borderRadius: '8px',
+                  transition: 'transform 0.2s ease',
+                  '&:hover': { transform: 'scale(1.05)' },
+                }}
+              >
+                Register
+              </Button>
+            </Box>
+          </form>
+        </Paper>
+      </Container>
+    </Box>
   );
 };
 
