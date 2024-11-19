@@ -14,11 +14,7 @@ func main() {
 
 	// Initialize database
 	utils.InitDatabase()
-    var result int
-	if err := utils.DB.Raw("SELECT 1").Scan(&result).Error; err != nil {
-		log.Fatalf("Database connection test failed: %v", err)
-	}
-	log.Println("Database connection test passed!")
+   
 	// Run migrations
 	utils.MigrateModels()
 

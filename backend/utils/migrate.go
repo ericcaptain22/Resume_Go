@@ -1,7 +1,9 @@
 package utils
 
-import "myapp/models"
-
+import (
+	"myapp/models"
+    "log"
+)
 // MigrateModels applies the database schema for the project
 func MigrateModels() {
 	err := DB.AutoMigrate(
