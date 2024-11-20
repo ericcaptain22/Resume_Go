@@ -1,6 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Container, Typography, Box, AppBar, Toolbar, IconButton, Grid, Paper } from '@mui/material';
+import {
+  Button,
+  Container,
+  Typography,
+  Box,
+  AppBar,
+  Toolbar,
+  IconButton,
+  Grid,
+  Paper,
+  Card,
+  CardContent,
+} from '@mui/material';
 import { Facebook, Twitter, Instagram } from '@mui/icons-material';
 
 const Home = () => {
@@ -13,8 +25,7 @@ const Home = () => {
           <Box
             component="img"
             src={`${process.env.PUBLIC_URL}/logo.svg`}
-            alt="Resume Builder & Job Portal"
-            
+            alt="JobWings Logo"
             sx={{
               height: 40,
               width: 40,
@@ -24,17 +35,20 @@ const Home = () => {
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
             JobWings
           </Typography>
-          <Link to="/login/user" style={{ textDecoration: 'none', color: '#fff', marginRight: '1rem' }}>
-            <Button color="inherit">User Login</Button>
+          <Link to="/" style={{ textDecoration: 'none', color: '#fff', marginRight: '1rem' }}>
+            <Button color="inherit">Home</Button>
           </Link>
-          <Link to="/login/recruiter" style={{ textDecoration: 'none', color: '#fff', marginRight: '1rem' }}>
-            <Button color="inherit">Recruiter Login</Button>
+          <Link to="/about" style={{ textDecoration: 'none', color: '#fff', marginRight: '1rem' }}>
+            <Button color="inherit">About</Button>
           </Link>
-          <Link to="/register/user" style={{ textDecoration: 'none', color: '#fff' }}>
-            <Button color="inherit">User Register</Button>
+          <Link to="/resume-templates" style={{ textDecoration: 'none', color: '#fff', marginRight: '1rem' }}>
+            <Button color="inherit">Resume Templates</Button>
           </Link>
-          <Link to="/register/recruiter" style={{ textDecoration: 'none', color: '#fff', marginRight: '1rem' }}>
-            <Button color="inherit">Recruiter Login</Button>
+          <Link to="/jobs" style={{ textDecoration: 'none', color: '#fff', marginRight: '1rem' }}>
+            <Button color="inherit">Jobs</Button>
+          </Link>
+          <Link to="/contact" style={{ textDecoration: 'none', color: '#fff' }}>
+            <Button color="inherit">Contact</Button>
           </Link>
         </Toolbar>
       </AppBar>
@@ -56,16 +70,15 @@ const Home = () => {
             padding: 4,
             backgroundColor: 'rgba(255, 255, 255, 0.85)',
             borderRadius: '12px',
-            maxWidth: 600,
+            maxWidth: 800,
           }}
         >
           <Typography variant="h3" gutterBottom sx={{ color: '#1976d2', fontWeight: 'bold' }}>
-            Welcome to Our Resume Builder
+            Welcome to JobWings
           </Typography>
           <Typography variant="body1" sx={{ color: '#555', marginBottom: 3 }}>
-            Build your professional profile, create resumes, and connect with recruiters in one place.
+            Build your professional profile, create resumes, explore job opportunities, and connect with recruiters.
           </Typography>
-        {/*
           <Box display="flex" justifyContent="center" gap={2}>
             <Link to="/login/user" style={{ textDecoration: 'none' }}>
               <Button
@@ -78,18 +91,13 @@ const Home = () => {
                   '&:hover': { transform: 'scale(1.1)' },
                 }}
               >
-               User Login
+                User Login
               </Button>
             </Link>
             <Link to="/login/recruiter" style={{ textDecoration: 'none' }}>
-              <Button variant="outlined" color="secondary">
-                Recruiter Login
-              </Button>
-            </Link>
-            <Link to="/register/user" style={{ textDecoration: 'none' }}>
               <Button
                 variant="outlined"
-                color="secondary"
+                color="primary"
                 sx={{
                   padding: '0.75rem 2rem',
                   borderRadius: '8px',
@@ -97,22 +105,28 @@ const Home = () => {
                   '&:hover': { transform: 'scale(1.1)' },
                 }}
               >
-               User Register
+                Recruiter Login
               </Button>
             </Link>
-            <Link to="/register/recruiter" style={{ textDecoration: 'none' }}>
-              <Button variant="outlined" color="secondary">
-                Recruiter Register
-              </Button>
-            </Link>
-          </Box>  */}
+          </Box>
         </Paper>
       </Box>
 
+     
+
       {/* Footer */}
-      <Box sx={{ bgcolor: '#1976d2', color: '#fff', py: 2, textAlign: 'center', position: 'relative', bottom: 0, width: '100%', }}>
+      <Box
+        component="footer"
+        sx={{
+          bgcolor: '#1976d2',
+          color: '#fff',
+          py: 2,
+          textAlign: 'center',
+          width: '100%',
+        }}
+      >
         <Typography variant="body2" gutterBottom>
-          © 2024 Resume Builder & Job Portal. All Rights Reserved.
+          © 2024 JobWings. All Rights Reserved.
         </Typography>
         <Box display="flex" justifyContent="center" gap={2}>
           <IconButton href="https://facebook.com" target="_blank" sx={{ color: '#fff' }}>
